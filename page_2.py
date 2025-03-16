@@ -20,7 +20,7 @@ st.markdown(
 st.header('Handwritten digit recognition', divider="rainbow")
 
 # Load the trained model
-model = joblib.load("model.pkl")
+model = joblib.load("model.joblib")
     
 FEEDBACK_FILE = "feedback.json"
 
