@@ -78,4 +78,5 @@ jobs:
         with:
           app-name: 'streamlit-ml'
           slot-name: 'Production'
+          app-settings-json: '{"WEBSITES_CONTAINER_START_TIME": "streamlit run streamlit_app.py"}'
           
