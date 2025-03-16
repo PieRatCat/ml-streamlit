@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_drawable_canvas import st_canvas
-import pickle
+import joblib
 import json
 import os
 from PIL import Image, ImageOps
@@ -20,8 +20,7 @@ st.markdown(
 st.header('Handwritten digit recognition', divider="rainbow")
 
 # Load the trained model
-with open('model.pkl', 'rb') as file:
-    model = pickle.load(file)
+model = joblib.load("model.pkl")
     
 FEEDBACK_FILE = "feedback.json"
 
