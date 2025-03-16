@@ -1,5 +1,5 @@
 import streamlit as st
-
+port = int(os.environ.get("PORT", 8501))
 # Define the pages
 page_1 = st.Page("page_1.py", title="About project", icon=":material/home:")
 page_2 = st.Page("page_2.py", title="App demo", icon=":material/draw:")
