@@ -68,9 +68,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_122B8C1B718E4D848E98B626B9B1C728 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_BD54C3118F164689BF4FD15F64CA6595 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_438C86A3346946148679FB52FA85520A }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_87A6E512F28E41F79C8439854605C862 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_EE8D3301887C41DF97AC29421CDE2948 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_EDB7A780527642F39B03B7A34CFA78B1 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
@@ -78,5 +78,4 @@ jobs:
         with:
           app-name: 'streamlit-ml'
           slot-name: 'Production'
-          app-settings-json: '{"WEBSITES_CONTAINER_START_TIME": "streamlit run streamlit_app.py"}'
           
