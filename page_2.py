@@ -84,5 +84,3 @@ with middle:
         st.write(f"Incorrect: {st.session_state.feedback_counts['thumbs_down']} ({percentage_incorrect:.2f}%)")
     else:
         st.write(f"Incorrect: {st.session_state.feedback_counts['thumbs_down']} (0.00%)")
-
-st.write(st.session_state.feedback_counts) #for debugging purposes.
