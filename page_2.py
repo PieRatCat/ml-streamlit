@@ -41,7 +41,7 @@ def save_feedback(data, filename="feedback.json"):
     try:
         with open(filename, "w") as f:
             json.dump(data, f, indent=4) #indent makes the json file more readable.
-        st.success(f"Data written to {filename}")
+        
     except IOError as e:
         st.error(f"Error writing to {filename}: {e}")    
 
