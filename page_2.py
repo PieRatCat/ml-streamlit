@@ -20,31 +20,7 @@ st.markdown(
 st.header('Handwritten digit recognition', divider="rainbow")
 
 # Load the trained model
-model = joblib.load("model.joblib")
-    
-
-
-def load_feedback(filename = "feedback.json"):
-    try:
-        if os.path.exists(filename):
-            with open(filename, "r") as f:
-                data = json.load(f)
-            return data
-        else:
-            return {}
-    except IOError as e:
-        st.error(f"Error reading from {filename}: {e}")
-        return {}
-
-        
-def save_feedback(data, filename="feedback.json"):
-    try:
-        with open(filename, "w") as f:
-            json.dump(data, f, indent=4)
-        
-        os.sync() 
-    except IOError as e:
-        st.error(f"Error writing to {filename}: {e}")   
+model = joblib.load("model.joblib")    
 
 st.markdown('''Draw a digit between 0 and 9. For best results, draw one digit at a time, try to use the entire canvas and center the digit. 
             Use the buttons under the canvas to erase or undo the last stroke. The accuracy of the result will vary depending on your handwriting style.''') 
@@ -73,18 +49,13 @@ if canvas_result.image_data is not None:
 # Feedback buttons and counts
 
 if "feedback_counts" not in st.session_state:
-    loaded_feedback = load_feedback()
-    if not loaded_feedback: 
-        st.session_state.feedback_counts = {"thumbs_up": 0, "thumbs_down": 0}
-    else:
-        st.session_state.feedback_counts = loaded_feedback
+    st.session_state.feedback_counts = {"thumbs_up": 0, "thumbs_down": 0}
 
 left, middle, right = st.columns([1, 1, 3])
 
 with left:
     if st.button(":material/thumb_up:"):
         st.session_state.feedback_counts["thumbs_up"] += 1
-        save_feedback(st.session_state.feedback_counts)
 
     total_feedback = (
         st.session_state.feedback_counts["thumbs_up"]
@@ -102,7 +73,6 @@ with left:
 with middle:
     if st.button(":material/thumb_down:"):
         st.session_state.feedback_counts["thumbs_down"] += 1
-        save_feedback(st.session_state.feedback_counts)
 
     total_feedback = (
         st.session_state.feedback_counts["thumbs_up"]
@@ -116,3 +86,5 @@ with middle:
         st.write(f"Incorrect: {st.session_state.feedback_counts['thumbs_down']} ({percentage_incorrect:.2f}%)")
     else:
         st.write(f"Incorrect: {st.session_state.feedback_counts['thumbs_down']} (0.00%)")
+
+st.write(st.session_state.feedback_counts) #for debugging purposes.
