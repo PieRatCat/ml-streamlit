@@ -70,9 +70,6 @@ if canvas_result.image_data is not None:
 if "feedback_counts" not in st.session_state:
     st.session_state.feedback_counts = load_feedback()
 
-if "feedback_counts" not in st.session_state:
-    st.session_state.feedback_counts = {"thumbs_up": 0, "thumbs_down": 0}
-
 left, middle, right = st.columns([1, 1, 3])
 
 with left:
