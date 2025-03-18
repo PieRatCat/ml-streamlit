@@ -32,14 +32,8 @@ def load_feedback():
         return {"thumbs_up": 0, "thumbs_down": 0}
 
 def save_feedback(feedback):
-    try:
-        print(f"Attempting to save feedback to: {FEEDBACK_FILE}") #Print the file location.
-        with open(FEEDBACK_FILE, "w") as f:
-            json.dump(feedback, f)
-        print("Feedback saved successfully.") #add a success message
-    except Exception as e:
-        print(f"Error saving feedback: {type(e).__name__} - {e}") #print the type of error and the error itself.
-        print(f"Current working directory: {os.getcwd()}") #print the current working directory.
+    with open(FEEDBACK_FILE, "w") as f:
+        json.dump(feedback, f)       
 
 st.markdown('''Draw a digit between 0 and 9. For best results, draw one digit at a time, try to use the entire canvas and center the digit. 
             Use the buttons under the canvas to erase or undo the last stroke. The accuracy of the result will vary depending on your handwriting style.''') 
