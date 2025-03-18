@@ -40,10 +40,11 @@ def load_feedback(filename = "feedback.json"):
 def save_feedback(data, filename="feedback.json"):
     try:
         with open(filename, "w") as f:
-            json.dump(data, f, indent=4) #indent makes the json file more readable.
+            json.dump(data, f, indent=4)
         
+        os.sync() 
     except IOError as e:
-        st.error(f"Error writing to {filename}: {e}")    
+        st.error(f"Error writing to {filename}: {e}")   
 
 st.markdown('''Draw a digit between 0 and 9. For best results, draw one digit at a time, try to use the entire canvas and center the digit. 
             Use the buttons under the canvas to erase or undo the last stroke. The accuracy of the result will vary depending on your handwriting style.''') 
