@@ -75,10 +75,28 @@ left, middle, right = st.columns([1, 1, 3])
 with left:
     if st.button(":material/thumb_up:"):
         st.session_state.feedback_counts["thumbs_up"] += 1
-        save_feedback(st.session_state.feedback_counts) 
-    st.write(f"Correct: {st.session_state.feedback_counts['thumbs_up']}")
+        save_feedback(st.session_state.feedback_counts)
+
 with middle:
     if st.button(":material/thumb_down:"):
         st.session_state.feedback_counts["thumbs_down"] += 1
-        save_feedback(st.session_state.feedback_counts) 
-    st.write(f"Incorrect: {st.session_state.feedback_counts['thumbs_down']}")
+        save_feedback(st.session_state.feedback_counts)
+
+total_feedback = (
+    st.session_state.feedback_counts["thumbs_up"]
+    + st.session_state.feedback_counts["thumbs_down"]
+)
+
+if total_feedback > 0:
+    percentage_correct = (
+        st.session_state.feedback_counts["thumbs_up"] / total_feedback
+    ) * 100
+    percentage_incorrect = (
+        st.session_state.feedback_counts["thumbs_down"] / total_feedback
+    ) * 100
+
+    st.write(f"Correct: {st.session_state.feedback_counts['thumbs_up']} ({percentage_correct:.2f}%)")
+    st.write(f"Incorrect: {st.session_state.feedback_counts['thumbs_down']} ({percentage_incorrect:.2f}%)")
+else:
+    st.write(f"Correct: {st.session_state.feedback_counts['thumbs_up']} (0.00%)")
+    st.write(f"Incorrect: {st.session_state.feedback_counts['thumbs_down']} (0.00%)")
