@@ -22,18 +22,28 @@ st.header('Handwritten digit recognition', divider="rainbow")
 # Load the trained model
 model = joblib.load("model.joblib")
     
-FEEDBACK_FILE = "feedback.json"
 
-def load_feedback():
-    if os.path.exists(FEEDBACK_FILE):
-        with open(FEEDBACK_FILE, "r") as f:
-            return json.load(f)
-    else:
-        return {"thumbs_up": 0, "thumbs_down": 0}
 
-def save_feedback(feedback):
-    with open(FEEDBACK_FILE, "w") as f:
-        json.dump(feedback, f)       
+def load_feedback(filename = "feedback.json"):
+    try:
+        if os.path.exists(filename):
+            with open(filename, "r") as f:
+                data = json.load(f)
+            return data
+        else:
+            return {}
+    except IOError as e:
+        st.error(f"Error reading from {filename}: {e}")
+        return {}
+
+        
+def save_feedback(data, filename="feedback.json"):
+    try:
+        with open(filename, "w") as f:
+            json.dump(data, f, indent=4) #indent makes the json file more readable.
+        st.success(f"Data written to {filename}")
+    except IOError as e:
+        st.error(f"Error writing to {filename}: {e}")    
 
 st.markdown('''Draw a digit between 0 and 9. For best results, draw one digit at a time, try to use the entire canvas and center the digit. 
             Use the buttons under the canvas to erase or undo the last stroke. The accuracy of the result will vary depending on your handwriting style.''') 
