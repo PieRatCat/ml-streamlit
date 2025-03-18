@@ -5,7 +5,7 @@ import os
 if st.button("Write JSON"):
     data = {"test": "data"}
     try:
-        with open("https://github.com/PieRatCat/ml-streamlit/blob/383ad068b5cf9fd799e80b75e634c630415212b5/feedback.json", "w") as f:
+        with open("https://github.com/PieRatCat/ml-streamlit/blob/61792fdb2af73499880a64e0b746eee891701adc/feedback.json", "w") as f:
             json.dump(data, f, indent=4)
         os.sync()
         st.success("JSON written successfully!")
@@ -14,7 +14,7 @@ if st.button("Write JSON"):
 
 st.write(f"Current working directory: {os.getcwd()}")
 
-if os.path.exists("https://github.com/PieRatCat/ml-streamlit/blob/383ad068b5cf9fd799e80b75e634c630415212b5/feedback.json"):
+if os.path.exists("https://github.com/PieRatCat/ml-streamlit/blob/61792fdb2af73499880a64e0b746eee891701adc/feedback.json"):
     st.write("feedback.json exists")
 else:
     st.write("feedback.json does not exist")
