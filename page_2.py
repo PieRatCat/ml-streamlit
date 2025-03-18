@@ -59,7 +59,7 @@ with left:
         st.session_state.feedback_counts["thumbs_up"]
         + st.session_state.feedback_counts["thumbs_down"]
     )
-
+  
     if total_feedback > 0:
         percentage_correct = (
             st.session_state.feedback_counts["thumbs_up"] / total_feedback
