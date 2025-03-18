@@ -1,8 +1,6 @@
 import streamlit as st
 from streamlit_drawable_canvas import st_canvas
 import joblib
-import json
-import os
 from PIL import Image, ImageOps
 import numpy as np
 
