@@ -70,15 +70,14 @@ if canvas_result.image_data is not None:
 if "feedback_counts" not in st.session_state:
     st.session_state.feedback_counts = load_feedback()
 
-left, middle, right = st.columns([1, 1, 3])
+if st.button(":material/thumb_up:", key="thumb_up_button"):
+    print("Thumbs Up button was pressed")
+    st.session_state.feedback_counts["thumbs_up"] += 1
+    save_feedback(st.session_state.feedback_counts)
+st.write(f"Correct: {st.session_state.feedback_counts['thumbs_up']}")
 
-with left:
-    if st.button(":material/thumb_up:"):
-        st.session_state.feedback_counts["thumbs_up"] += 1
-        save_feedback(st.session_state.feedback_counts) 
-    st.write(f"Correct: {st.session_state.feedback_counts['thumbs_up']}")
-with middle:
-    if st.button(":material/thumb_down:"):
-        st.session_state.feedback_counts["thumbs_down"] += 1
-        save_feedback(st.session_state.feedback_counts) 
-    st.write(f"Incorrect: {st.session_state.feedback_counts['thumbs_down']}")
+if st.button(":material/thumb_down:", key="thumb_down_button"):
+    print("Thumbs Down button was pressed")
+    st.session_state.feedback_counts["thumbs_down"] += 1
+    save_feedback(st.session_state.feedback_counts)
+st.write(f"Incorrect: {st.session_state.feedback_counts['thumbs_down']}")
